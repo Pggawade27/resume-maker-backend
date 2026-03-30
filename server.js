@@ -13,6 +13,6 @@ app.use(express.json());
 // all routes
 app.use('/api/resume-maker', routes);
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on port ${port}`);
 });
