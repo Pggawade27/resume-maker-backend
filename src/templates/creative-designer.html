@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{FULL_NAME}} - Resume</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 40px; }
+  .header { background: linear-gradient(135deg, #6366F1, #8B5CF6); color: #fff; padding: 30px; border-radius: 12px; margin-bottom: 30px; }
+  .header h1 { font-size: 30px; font-weight: 800; letter-spacing: 1px; margin-bottom: 6px; }
+  .contact { font-size: 13px; opacity: 0.9; }
+  .contact span { margin-right: 16px; }
+  .section { margin-bottom: 24px; background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 4px solid #6366F1; }
+  .section-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #6366F1; margin-bottom: 10px; }
+  .section-content { font-size: 14px; color: #475569; white-space: pre-wrap; }
+  @media print { body { padding: 20px; } .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .section { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>{{FULL_NAME}}</h1>
+    <div class="contact">
+      <span>{{EMAIL}}</span>
+      <span>{{PHONE}}</span>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">About Me</div>
+    <div class="section-content">{{SUMMARY}}</div>
+  </div>
+  <div class="section">
+    <div class="section-title">Experience</div>
+    <div class="section-content">{{EXPERIENCE}}</div>
+  </div>
+  <div class="section">
+    <div class="section-title">Education</div>
+    <div class="section-content">{{EDUCATION}}</div>
+  </div>
+  <div class="section">
+    <div class="section-title">Skills & Tools</div>
+    <div class="section-content">{{SKILLS}}</div>
+  </div>
+</body>
+</html>

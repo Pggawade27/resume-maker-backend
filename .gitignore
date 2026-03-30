@@ -1,0 +1,37 @@
+# Ignore compiled output files and directories
+/build/
+/dist/
+/target/
+*.class
+*.exe
+*.dll
+
+# Ignore log files and databases
+*.log
+*.sqlite
+/db/*.sqlite3
+
+# Ignore OS-generated files
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# Ignore IDE and editor configuration files
+.idea/ # JetBrains IDEs like IntelliJ, PyCharm
+.vscode/ # VS Code
+*.suo
+*.user
+*.userprefs
+
+# Ignore package manager and dependency directories
+/node_modules/
+/vendor/
+/packages/
+
+# Ignore environment and secrets files
+.env
+config.json # If it contains sensitive information
+
+# Ignore temporary and backup files
+*~
+*.tmp
+.env
