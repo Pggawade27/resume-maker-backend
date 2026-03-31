@@ -6,12 +6,12 @@ import templateRoutes from './template.routes.js';
 
 const router = Router();
 
-router.use('/', (req, res) => {
-  res.send('Backend is running');
-});
 router.use('/auth', authRoutes);
 router.use('/resumes', resumeRoutes);
 router.use('/ai', aiRoutes);
 router.use('/templates', templateRoutes);
+router.use('/', (req, res) => {
+  res.send('Backend is running');
+});
 
 export default router;
