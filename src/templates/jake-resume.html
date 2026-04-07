@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{FULL_NAME}} — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.45;
+    color: #1a202c;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    max-width: 8.27in;
+    min-height: 11.69in;
+    margin: 0 auto;
+    padding: 0.55in 0.65in;
+    background: #fff;
+  }
+
+  /* ─── Header ─── */
+  .header {
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    border-bottom: 1.8px solid #2563eb;
+  }
+  .name {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 28pt;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #0f172a;
+    line-height: 1.1;
+  }
+  .contact-line {
+    font-size: 8.5pt;
+    color: #4a5568;
+    margin-top: 5px;
+    letter-spacing: 0.2px;
+  }
+  .contact-line .sep {
+    margin: 0 7px;
+    color: #93c5fd;
+  }
+
+  /* ─── Section ─── */
+  .section { margin-bottom: 13px; }
+  .section-title {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 11.5pt;
+    font-weight: 600;
+    color: #1d4ed8;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    padding-bottom: 3px;
+    margin-bottom: 7px;
+    border-bottom: 0.8px solid #bfdbfe;
+  }
+
+  /* ─── Content ─── */
+  .content {
+    font-size: 9.5pt;
+    color: #374151;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* ─── Skills chips ─── */
+  .skills-wrap { display: flex; flex-wrap: wrap; gap: 5px 7px; }
+  .skill-chip {
+    background: #eff6ff;
+    border: 0.8px solid #bfdbfe;
+    color: #1e40af;
+    font-size: 8.5pt;
+    padding: 2px 9px;
+    border-radius: 99px;
+    font-weight: 500;
+  }
+
+  @page { margin: 0; }
+  @media print {
+    body { background: #fff; }
+    .page { padding: 0.5in 0.6in; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="name">{{FULL_NAME}}</div>
+    <div class="contact-line">
+      <span>{{EMAIL}}</span>
+      <span class="sep">•</span>
+      <span>{{PHONE}}</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Summary</div>
+    <div class="content">{{SUMMARY}}</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Experience</div>
+    <div class="content">{{EXPERIENCE}}</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Education</div>
+    <div class="content">{{EDUCATION}}</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Skills</div>
+    <div class="content">{{SKILLS}}</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -25,6 +25,8 @@ CREATE TABLE IF NOT EXISTS templates (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   preview_icon VARCHAR(10) NOT NULL DEFAULT '📄',
+  description VARCHAR(500) DEFAULT '',
+  style_hint VARCHAR(100) DEFAULT '',
   is_active BOOLEAN DEFAULT TRUE,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -40,15 +42,31 @@ CREATE TABLE IF NOT EXISTS resumes (
   experience TEXT,
   education TEXT,
   summary TEXT,
-  template_id INT DEFAULT NULL,
-  is_paid BOOLEAN DEFAULT FALSE,
+  template_id INT DEFAULT 1,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
   FOREIGN KEY (template_id) REFERENCES templates(id) ON DELETE SET NULL
 );
 
-INSERT IGNORE INTO templates (id, name, preview_icon) VALUES
-  (1, 'Modern Professional', '📄'),
-  (2, 'Classic Executive', '📋'),
-  (3, 'Creative Designer', '🎨');
+-- Add new columns to templates if upgrading existing DB
+ALTER TABLE templates ADD COLUMN IF NOT EXISTS description VARCHAR(500) DEFAULT '';
+ALTER TABLE templates ADD COLUMN IF NOT EXISTS style_hint VARCHAR(100) DEFAULT '';
+
+-- Remove is_paid if upgrading existing DB
+ALTER TABLE resumes DROP COLUMN IF EXISTS is_paid;
+
+-- Set default template_id if null
+ALTER TABLE resumes MODIFY COLUMN template_id INT DEFAULT 1;
+
+INSERT INTO templates (id, name, description, style_hint) VALUES
+  (1, 'Jake''s Resume', 'Clean single-column ATS-friendly layout inspired by classic LaTeX templates', 'single-col'),
+  (2, 'Awesome CV', 'Two-column with dark gradient header and sidebar — modern and striking', 'two-col-sidebar'),
+  (3, 'ModernCV Classic', 'Professional with blue gradient accent bar and clean typography', 'classic'),
+  (4, 'AltaCV', 'Teal-accented two-column with circular avatar header', 'two-col-teal'),
+  (5, 'Deedy Resume', 'Tech-focused with bold dark header and yellow accents', 'dark-header'),
+  (6, 'Crisp Minimal', 'Ultra-minimal with elegant serif name and lavender-pink accents', 'minimal')
+ON DUPLICATE KEY UPDATE
+  name = VALUES(name),
+  description = VALUES(description),
+  style_hint = VALUES(style_hint);

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{FULL_NAME}} — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+    font-size: 9.5pt;
+    color: #0f172a;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    max-width: 8.27in;
+    min-height: 11.69in;
+    margin: 0 auto;
+    padding: 0.62in 0.75in;
+    background: #fff;
+  }
+
+  /* ─── Header ─── */
+  .header { margin-bottom: 28px; }
+  .name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 32pt;
+    color: #0f172a;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .contact-row {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 0;
+  }
+  .contact-row a, .contact-row span {
+    font-size: 8.5pt;
+    color: #64748b;
+    font-weight: 400;
+  }
+  .contact-row .pipe { color: #cbd5e1; margin: 0 10px; }
+
+  /* ─── Thin divider ─── */
+  .divider { height: 1px; background: #e2e8f0; margin: 14px 0; }
+  .divider-accent { height: 2px; background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%); border-radius: 99px; margin-bottom: 28px; width: 80px; }
+
+  /* ─── Section ─── */
+  .section { margin-bottom: 20px; }
+  .section-title {
+    font-size: 7.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: #8b5cf6;
+    margin-bottom: 8px;
+  }
+  .content {
+    font-size: 9.5pt;
+    color: #334155;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    font-weight: 300;
+  }
+
+  /* ─── Two-col for skills ─── */
+  .two-col { display: flex; gap: 32px; }
+  .two-col .section { flex: 1; }
+
+  @page { margin: 0; }
+  @media print { body { background: #fff; } .page { padding: 0.5in 0.65in; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="name">{{FULL_NAME}}</div>
+    <div class="contact-row">
+      <span>{{EMAIL}}</span>
+      <span class="pipe">|</span>
+      <span>{{PHONE}}</span>
+    </div>
+  </div>
+
+  <div class="divider-accent"></div>
+
+  <div class="section">
+    <div class="section-title">Summary</div>
+    <div class="divider"></div>
+    <div class="content">{{SUMMARY}}</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Experience</div>
+    <div class="divider"></div>
+    <div class="content">{{EXPERIENCE}}</div>
+  </div>
+
+  <div class="two-col">
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="divider"></div>
+      <div class="content">{{EDUCATION}}</div>
+    </div>
+    <div class="section">
+      <div class="section-title">Skills</div>
+      <div class="divider"></div>
+      <div class="content">{{SKILLS}}</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

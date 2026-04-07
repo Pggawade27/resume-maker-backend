@@ -12,6 +12,38 @@ const escapeHtml = (str) => {
     .replace(/\n/g, '<br>');
 };
 
+const getInitials = (fullName) => {
+  if (!fullName) return '?';
+  const parts = fullName.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0][0].toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+};
+
+const getFirstName = (fullName) => {
+  if (!fullName) return '';
+  return fullName.trim().split(/\s+/)[0];
+};
+
+const getLastName = (fullName) => {
+  if (!fullName) return '';
+  const parts = fullName.trim().split(/\s+/);
+  if (parts.length === 1) return '';
+  return parts.slice(1).join(' ');
+};
+
+const templateMap = {
+  1: 'jake-resume.html',
+  2: 'awesome-cv.html',
+  3: 'moderncv-classic.html',
+  4: 'altacv.html',
+  5: 'deedy-resume.html',
+  6: 'crisp-minimal.html',
+  // legacy fallbacks
+  7: 'modern-professional.html',
+  8: 'classic-executive.html',
+  9: 'creative-designer.html',
+};
+
 export const downloadResume = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -27,26 +59,22 @@ export const downloadResume = async (req, res) => {
     }
 
     const resume = resumes[0];
-
-    const templateMap = {
-      1: 'modern-professional.html',
-      2: 'classic-executive.html',
-      3: 'creative-designer.html',
-    };
-
-    const templateFile = templateMap[resume.template_id] || 'modern-professional.html';
+    const templateFile = templateMap[resume.template_id] || 'jake-resume.html';
     const templatePath = path.join(process.cwd(), 'src/templates', templateFile);
 
     let html;
     try {
       html = await fs.readFile(templatePath, 'utf8');
     } catch {
-      const fallbackPath = path.join(process.cwd(), 'src/templates/modern-professional.html');
+      const fallbackPath = path.join(process.cwd(), 'src/templates/jake-resume.html');
       html = await fs.readFile(fallbackPath, 'utf8');
     }
 
     html = html
       .replace(/{{FULL_NAME}}/g, escapeHtml(resume.full_name) || 'Your Name')
+      .replace(/{{FIRSTNAME}}/g, escapeHtml(getFirstName(resume.full_name)))
+      .replace(/{{LASTNAME}}/g, escapeHtml(getLastName(resume.full_name)))
+      .replace(/{{INITIALS}}/g, getInitials(resume.full_name))
       .replace(/{{EMAIL}}/g, escapeHtml(resume.email) || '')
       .replace(/{{PHONE}}/g, escapeHtml(resume.phone) || '')
       .replace(/{{SUMMARY}}/g, escapeHtml(resume.summary) || '')
@@ -55,7 +83,7 @@ export const downloadResume = async (req, res) => {
       .replace(/{{EDUCATION}}/g, escapeHtml(resume.education) || '');
 
     res.setHeader('Content-Type', 'text/html');
-    res.setHeader('Content-Disposition', `attachment; filename="${resume.full_name || 'resume'}.html"`);
+    res.setHeader('Content-Disposition', `attachment; filename="${(resume.full_name || 'resume').replace(/[^a-zA-Z0-9 ]/g, '')}.html"`);
 
     return res.send(html);
   } catch (error) {

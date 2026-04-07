@@ -6,7 +6,7 @@ const router = Router();
 router.get('/', async (req, res) => {
   try {
     const templates = await queryExecutor(
-      'SELECT id, name, preview_icon FROM templates WHERE is_active = TRUE ORDER BY id'
+      'SELECT id, name, description, style_hint FROM templates WHERE is_active = TRUE ORDER BY id'
     );
     return res.status(200).json({ templates });
   } catch (error) {

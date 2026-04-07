@@ -60,7 +60,7 @@ export const updateResume = async (req, res) => {
   try {
     const userId = req.user.id;
     const { id } = req.params;
-    const { title, full_name, email, phone, skills, experience, education, summary, template_id, is_paid } = req.body;
+    const { title, full_name, email, phone, skills, experience, education, summary, template_id } = req.body;
 
     const existing = await queryExecutor(
       'SELECT id FROM resumes WHERE id = ? AND user_id = ?',
@@ -83,7 +83,6 @@ export const updateResume = async (req, res) => {
     if (education !== undefined) { fields.push('education = ?'); values.push(education); }
     if (summary !== undefined) { fields.push('summary = ?'); values.push(summary); }
     if (template_id !== undefined) { fields.push('template_id = ?'); values.push(template_id); }
-    if (is_paid !== undefined) { fields.push('is_paid = ?'); values.push(is_paid); }
 
     if (fields.length === 0) {
       return res.status(400).json({ message: 'No fields to update' });

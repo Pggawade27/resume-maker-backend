@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{FULL_NAME}} — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@700;800&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --accent: #0d9488;
+    --accent-light: #ccfbf1;
+    --dark: #0f172a;
+    --text: #1e293b;
+    --muted: #64748b;
+  }
+  body {
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    font-size: 9pt;
+    color: var(--text);
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    max-width: 8.27in;
+    min-height: 11.69in;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: auto 1fr;
+    background: #fff;
+  }
+
+  /* ─── Header full-width ─── */
+  .header {
+    grid-column: 1 / -1;
+    background: var(--dark);
+    padding: 26px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto Slab', serif;
+    font-size: 22pt;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .header-text {}
+  .hname {
+    font-family: 'Roboto Slab', serif;
+    font-size: 22pt;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.3px;
+  }
+  .hcontact {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 16px;
+  }
+  .hcontact span { font-size: 8pt; color: #94a3b8; }
+  .hcontact .dot { color: var(--accent); }
+
+  /* ─── Sidebar ─── */
+  .sidebar {
+    background: #f8fafc;
+    padding: 22px 18px;
+    border-right: 1px solid #e2e8f0;
+  }
+  .s-section { margin-bottom: 18px; }
+  .s-title {
+    font-size: 7pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 7px;
+    padding-bottom: 3px;
+    border-bottom: 1.5px solid var(--accent-light);
+  }
+  .s-content {
+    font-size: 8.5pt;
+    color: #475569;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+  .tag-wrap { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tag {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 7.5pt;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* ─── Main ─── */
+  .main { padding: 22px 26px; }
+  .m-section { margin-bottom: 16px; }
+  .m-title {
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    color: var(--dark);
+    margin-bottom: 7px;
+    padding-bottom: 3px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .m-content {
+    font-size: 9pt;
+    color: #374151;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+
+  @page { margin: 0; }
+  @media print { body { background: #fff; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="circle">{{INITIALS}}</div>
+    <div class="header-text">
+      <div class="hname">{{FULL_NAME}}</div>
+      <div class="hcontact">
+        <span>{{EMAIL}}</span>
+        <span class="dot">•</span>
+        <span>{{PHONE}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="s-section">
+      <div class="s-title">About</div>
+      <div class="s-content">{{SUMMARY}}</div>
+    </div>
+    <div class="s-section">
+      <div class="s-title">Skills</div>
+      <div class="s-content">{{SKILLS}}</div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="m-section">
+      <div class="m-title">Experience</div>
+      <div class="m-content">{{EXPERIENCE}}</div>
+    </div>
+    <div class="m-section">
+      <div class="m-title">Education</div>
+      <div class="m-content">{{EDUCATION}}</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{FULL_NAME}} — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Raleway', 'Helvetica Neue', sans-serif;
+    font-size: 9pt;
+    color: #2d3748;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    max-width: 8.27in;
+    min-height: 11.69in;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+  }
+
+  /* ─── Header bar ─── */
+  .header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    padding: 32px 40px 28px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .header-avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28pt;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+  .header-info { flex: 1; }
+  .header-name {
+    font-size: 24pt;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  .header-contact {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+  }
+  .header-contact span {
+    font-size: 8pt;
+    color: #94a3b8;
+    font-weight: 400;
+  }
+  .header-contact .icon { color: #60a5fa; margin-right: 4px; }
+
+  /* ─── Body two-column ─── */
+  .body { display: flex; flex: 1; }
+
+  /* ─── Sidebar ─── */
+  .sidebar {
+    width: 200px;
+    background: #f8fafc;
+    border-right: 1px solid #e2e8f0;
+    padding: 24px 18px;
+    flex-shrink: 0;
+  }
+  .sidebar-section { margin-bottom: 20px; }
+  .sidebar-title {
+    font-size: 7.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: #3b82f6;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid #dbeafe;
+  }
+  .sidebar-content {
+    font-size: 8.5pt;
+    color: #475569;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+  .skill-bar-wrap { display: flex; flex-direction: column; gap: 6px; }
+  .skill-item { display: flex; flex-direction: column; gap: 3px; }
+  .skill-name { font-size: 8pt; color: #334155; font-weight: 500; }
+  .skill-bar {
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    border-radius: 99px;
+    width: 80%;
+  }
+
+  /* ─── Main ─── */
+  .main { flex: 1; padding: 24px 28px; }
+  .section { margin-bottom: 18px; }
+  .section-title {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #3b82f6;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #3b82f6;
+  }
+  .content {
+    font-size: 9pt;
+    color: #374151;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+
+  @page { margin: 0; }
+  @media print {
+    body { background: #fff; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-avatar">{{INITIALS}}</div>
+    <div class="header-info">
+      <div class="header-name">{{FULL_NAME}}</div>
+      <div class="header-contact">
+        <span><span class="icon">✉</span>{{EMAIL}}</span>
+        <span><span class="icon">☎</span>{{PHONE}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Profile</div>
+        <div class="sidebar-content">{{SUMMARY}}</div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Skills</div>
+        <div class="sidebar-content">{{SKILLS}}</div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="section">
+        <div class="section-title">Experience</div>
+        <div class="content">{{EXPERIENCE}}</div>
+      </div>
+      <div class="section">
+        <div class="section-title">Education</div>
+        <div class="content">{{EDUCATION}}</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
